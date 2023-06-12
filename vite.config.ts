@@ -7,5 +7,14 @@ export default defineConfig({
     host: 'localhost',
     port: 5173
   },
-  plugins: [vue()]
+  plugins: [vue()],
+  css: {
+    // 预处理器配置项
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        math: 'always'
+      }
+    }
+  }
 });
