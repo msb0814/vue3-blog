@@ -8,7 +8,15 @@
 
       <!-- 导航区 -->
       <div class="nav-content">
-        <div class="nav-item" :key="nav.path" v-for="nav in navList" @click="handleClickMenu(nav.path)">{{ nav.label }}</div>
+        <div
+          class="nav-item"
+          :class="{ 'nav-item-active': nav.name === activeTab }"
+          :key="nav.name"
+          v-for="nav in navList"
+          @click="handleClickMenu(nav.name)"
+        >
+          {{ nav.label }}
+        </div>
       </div>
     </div>
   </header>
@@ -21,14 +29,17 @@ import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
 const router = useRouter();
 
 const navList: Array<NavItem> = [
-  { label: '首页', path: 'home' },
-  { label: '存档', path: 'archive' },
-  { label: '文章', path: 'articles' },
-  { label: '关于', path: 'about' }
+  { label: '首页', name: 'home' },
+  { label: '存档', name: 'archive' },
+  { label: '文章', name: 'articles' },
+  { label: '关于', name: 'about' }
 ];
 
-const handleClickMenu = (path: string) => {
-  router.push(path);
+const activeTab = ref<string>('home');
+
+const handleClickMenu = (name: string) => {
+  router.push({ name });
+  activeTab.value = name;
 };
 </script>
 
@@ -76,7 +87,10 @@ const handleClickMenu = (path: string) => {
         margin: 0 10px;
         padding: 0 5px;
         cursor: pointer;
-        line-height: 100%;
+
+        &-active {
+          color: @color-theme;
+        }
 
         &:hover {
           color: #333;
@@ -86,6 +100,7 @@ const handleClickMenu = (path: string) => {
             display: block;
             position: absolute;
             bottom: 0;
+            left: 0;
             width: 100%;
             height: 2px;
             background: @color-theme;
