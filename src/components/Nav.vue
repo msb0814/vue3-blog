@@ -1,17 +1,17 @@
 <template>
-  <div class="nav">
-    <!-- logo -->
-    <div class="logo">blog</div>
+  <header class="nav">
+    <div class="container">
+      <!-- logo -->
+      <h1 class="logo" @click="handleClickMenu('home')">
+        <img src="@/assets/avatar.jpg" alt="" />
+      </h1>
 
-    <!-- 导航区 -->
-    <div class="nav-content">
-      <div class="nav-item">首页</div>
-      <div class="nav-item" @click="handle">文章</div>
-      <div class="nav-item" @click="handle2">archive</div>
-      <div class="nav-item">1</div>
-      <div class="nav-item">1</div>
+      <!-- 导航区 -->
+      <div class="nav-content">
+        <div class="nav-item" :key="nav.path" v-for="nav in navList" @click="handleClickMenu(nav.path)">{{ nav.label }}</div>
+      </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">
@@ -20,43 +20,78 @@ import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
 
 const router = useRouter();
 
-const handle = () => {
-  console.log(1);
+const navList: Array<NavItem> = [
+  { label: '首页', path: 'home' },
+  { label: '存档', path: 'archive' },
+  { label: '文章', path: 'articles' },
+  { label: '关于', path: 'about' }
+];
 
-  router.push({ path: '/articles' });
-};
-
-const handle2 = () => {
-  console.log(1);
-
-  router.push({ path: '/archive' });
+const handleClickMenu = (path: string) => {
+  router.push(path);
 };
 </script>
 
 <style scoped lang="less">
 .nav {
-  display: flex;
   position: fixed;
   top: 0;
   left: 0;
-  height: 30px;
-  padding: 10px 20px;
+  width: 100vw;
+  height: 60px;
+  font-size: 18px;
+  background: #fff;
+  box-shadow: 0 2px 8px #ccc;
 
-  .logo {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #000;
-    border-radius: 50%;
-    padding: 5px;
-  }
-
-  .nav-content {
+  .container {
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
 
-    .nav-item {
-      margin: 0 5px;
+    .logo {
+      width: 50px;
+      height: 50px;
       cursor: pointer;
+      margin: 0 30px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-evenly;
+      height: 100%;
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 100%;
+        margin: 0 10px;
+        padding: 0 5px;
+        cursor: pointer;
+        line-height: 100%;
+
+        &:hover {
+          color: #333;
+
+          &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: @color-theme;
+          }
+        }
+      }
     }
   }
 }

@@ -1,11 +1,10 @@
 import { RouteRecordRaw } from 'vue-router';
-import Home from '../views/Home.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "articles" */ '../views/Home.vue')
   },
   {
     path: '/articles',
@@ -16,6 +15,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/archive',
     name: 'archive',
     component: () => import(/* webpackChunkName: "archive" */ '../views/Archive.vue')
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import(/* webpackChunkName: "about" */ '../views/about.vue')
   }
 ];
 

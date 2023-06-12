@@ -1,14 +1,30 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
-import Nav from './components/Nav.vue';
-</script>
-
 <template>
-  <Nav />
-
   <div class="layout">
-    <router-view />
+    <Nav />
+
+    <div class="container">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<script setup lang="ts">
+import Nav from './components/Nav.vue';
+</script>
+
+<style lang="less">
+@import url('./styles/index.less');
+@import url('./styles/reset.less');
+
+.layout {
+  width: 100%;
+  height: 100%;
+  padding-top: 80px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+}
+</style>
