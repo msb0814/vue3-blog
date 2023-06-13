@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
@@ -48,6 +48,7 @@ const handleClickMenu = (name: string) => {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 999;
   width: 100vw;
   height: 60px;
   font-size: 18px;
@@ -87,6 +88,7 @@ const handleClickMenu = (name: string) => {
         margin: 0 10px;
         padding: 0 5px;
         cursor: pointer;
+        transition: color 0.1s ease;
 
         &-active {
           color: @color-theme;

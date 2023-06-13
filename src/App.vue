@@ -2,7 +2,7 @@
   <div class="layout">
     <Nav />
 
-    <div class="container">
+    <div class="layout-container">
       <router-view />
     </div>
   </div>
@@ -22,9 +22,10 @@ import Nav from './components/Nav.vue';
   padding-top: 80px;
 }
 
-.container {
+.layout-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
   min-height: calc(100% - 30px);
   background: #fff;
 }
