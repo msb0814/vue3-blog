@@ -19,16 +19,17 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import request from '@/utils/request';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const username = ref<string>('');
 const password = ref<string>('');
 
 const handleLogin = async () => {
-  console.log(username.value);
-  console.log(password.value);
-
-  const res = await request.post('/admin/login', { username: username.value, password: password.value });
-  console.log(res);
+  const res: LoginData = await request.post('/admin/login', { email: username.value, password: password.value });
+  localStorage.setItem('TOKEN', res.token);
+  alert('登录成功');
+  router.push({ name: 'home' });
 };
 </script>
 

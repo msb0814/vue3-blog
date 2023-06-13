@@ -10,7 +10,7 @@ export interface ResponseData {
 let service: AxiosInstance | any;
 
 service = axios.create({
-  baseURL: '/api/v1',
+  baseURL: '/api',
   timeout: 50000
 });
 
@@ -20,8 +20,7 @@ service.interceptors.request.use(
     return config;
   },
   (error: any) => {
-    // Do something with request error
-    console.error('error:', error); // for debug
+    console.error('error:', error);
     return Promise.reject(error);
   }
 );
@@ -33,7 +32,7 @@ service.interceptors.response.use(
     // code == 0: success
     if (res.status === 200) {
       const data: ResponseData = res.data;
-      if (data.code === 0) {
+      if (data.code === 200) {
         return data.data;
       } else {
         console.log('error', data.message);

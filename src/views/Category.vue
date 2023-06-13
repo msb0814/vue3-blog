@@ -1,11 +1,5 @@
 <template>
-  <div>存档1</div>
-  <div>存档2</div>
-  <div>存档3</div>
-  <div>存档4</div>
-  <div>存档5</div>
-  <div>存档6</div>
-  <div>+</div>
+  <div>文章</div>
 </template>
 
 <script setup lang="ts">
