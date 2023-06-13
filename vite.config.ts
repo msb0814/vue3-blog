@@ -6,7 +6,14 @@ import path from 'path';
 export default defineConfig({
   server: {
     host: 'localhost',
-    port: 5173
+    port: 8083,
+    proxy: {
+      '/api': {
+        target: 'http://62.234.36.20:5000/',
+        changeOrigin: true, // 允许跨域
+        rewrite: pathStr => pathStr.replace(/^\/api/, '/api/v1')
+      }
+    }
   },
   plugins: [vue()],
   css: {

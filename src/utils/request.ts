@@ -1,40 +1,50 @@
-import axios from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-/*
- * 创建实例
- * 与后端服务通信
- */
-const HttpClient = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL
+export interface ResponseData {
+  code: number;
+  data?: any;
+  message: string;
+}
+
+// 创建 axios 实例
+let service: AxiosInstance | any;
+
+service = axios.create({
+  baseURL: '/api/v1',
+  timeout: 50000
 });
 
-/**
- * 请求拦截器
- * 功能：配置请求头
- */
-HttpClient.interceptors.request.use(
-  config => {
-    const token = '222';
-    config.headers.authorization = 'Bearer ' + token;
+// request 拦截器 axios 的一些配置
+service.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
     return config;
   },
-  error => {
-    console.error('网络错误，请稍后重试');
+  (error: any) => {
+    // Do something with request error
+    console.error('error:', error); // for debug
     return Promise.reject(error);
   }
 );
 
-/**
- * 响应拦截器
- * 功能：处理异常
- */
-HttpClient.interceptors.response.use(
-  config => {
-    return config;
+// respone 拦截器 axios 的一些配置
+service.interceptors.response.use(
+  (res: AxiosResponse) => {
+    // Some example codes here:
+    // code == 0: success
+    if (res.status === 200) {
+      const data: ResponseData = res.data;
+      if (data.code === 0) {
+        return data.data;
+      } else {
+        console.log('error', data.message);
+      }
+    } else {
+      console.log('error', '网络错误!');
+
+      return Promise.reject(new Error(res.data.message || 'Error'));
+    }
   },
-  error => {
-    return Promise.reject(error);
-  }
+  (error: any) => Promise.reject(error)
 );
 
-export default HttpClient;
+export default service;

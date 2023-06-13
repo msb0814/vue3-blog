@@ -18,13 +18,17 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import request from '@/utils/request';
 
 const username = ref<string>('');
 const password = ref<string>('');
 
-const handleLogin = () => {
+const handleLogin = async () => {
   console.log(username.value);
   console.log(password.value);
+
+  const res = await request.post('/admin/login', { username: username.value, password: password.value });
+  console.log(res);
 };
 </script>
 
@@ -32,7 +36,6 @@ const handleLogin = () => {
 .login-container {
   display: flex;
   flex-direction: column;
-  // border: 1px solid #333;
   height: 50%;
   padding: 20px;
 

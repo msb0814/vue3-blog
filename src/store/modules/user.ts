@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import request from '@/utils/request';
 
 // defineStore 第一个参数是id，必需且值唯一
 export const useUserStore = defineStore('user', {
@@ -16,8 +17,15 @@ export const useUserStore = defineStore('user', {
     updateUserInfo(userInfo: { name: string; age: number }) {
       this.userInfo = userInfo;
     },
+
     updateToken(token: string) {
       this.token = token;
+    },
+
+    // 管理员登录
+    async adminLogin(payload: { email: string; password: string }) {
+      const { data } = await request.post('/admin/login', ...payload);
+      return data;
     }
   }
 });
