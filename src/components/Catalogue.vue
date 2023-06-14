@@ -1,7 +1,7 @@
 <template>
   <div class="catalogue-container">
     <ul class="catalogue-item" :key="article.id" v-for="article in props.articleList">
-      <li>
+      <li @click="handleToArticle(article.id)">
         <!-- 首行信息 -->
         <div class="catalogue-item-meta">{{ `${article.created_at} &nbsp; | &nbsp; ${article.categoryName} ` }}</div>
 
@@ -30,13 +30,17 @@ interface ArticleItem extends ArticleListItem {
 </script>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
   articleList: { type: Array<ArticleItem>, required: true }
 });
 
-onMounted(() => {});
+const handleToArticle = (id: number) => {
+  router.push(`/article/${id}`);
+};
 </script>
 
 <style scoped lang="less">

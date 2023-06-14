@@ -28,4 +28,33 @@ declare global {
   }
 }
 
-export {};
+interface ArticleCommentMeta {
+  current_page: number;
+  per_page: number;
+  count: number;
+  total: number;
+  total_pages: number;
+}
+
+interface ArticleComment {
+  data: any[]; // 请根据实际情况定义具体的类型
+  meta: ArticleCommentMeta;
+}
+
+interface Article {
+  created_at: string;
+  id: number;
+  title: string;
+  author: string;
+  description: string;
+  content: string;
+  cover: string;
+  browse: number;
+  updated_at: string;
+  deleted_at: null | string;
+  category_id: number;
+  category: Category;
+  article_comment: ArticleComment;
+}
+
+export { Article };
