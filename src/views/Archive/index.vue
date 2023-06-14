@@ -77,7 +77,7 @@ const handleChangeActive = async (id: number) => {
 .container {
   .siderbar {
     position: fixed;
-    top: 100px;
+    top: 80px;
   }
 }
 </style>
