@@ -2,6 +2,10 @@
   <div>文章</div>
 </template>
 
+<script lang="ts">
+export default { name: 'Category' };
+</script>
+
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import request from '@/utils/request';

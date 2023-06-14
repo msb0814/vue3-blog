@@ -25,8 +25,8 @@ import Nav from './components/Nav.vue';
 .layout-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding-bottom: 20px;
   min-height: calc(100% - 30px);
-  background: #fff;
+  // background: #fff;
 }
 </style>

@@ -8,13 +8,24 @@ declare global {
     token: string;
   };
 
-  type Category = {
+  interface Category {
     id: number;
     name: string;
-    key: string;
-    parent_id?: number;
-    article_nums: number;
-  };
+    status: number;
+    sort_order: number;
+    parent_id: number;
+  }
+
+  interface ArticleListItem {
+    created_at: string;
+    id: number;
+    title: string;
+    author: string;
+    description: string;
+    cover: string;
+    browse: number;
+    category_id: number;
+  }
 }
 
 export {};
