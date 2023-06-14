@@ -23,19 +23,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
+const activeTab = ref<string>('home'); // 当前活动的tab
+
+onMounted(() => {
+  const url = location.pathname;
+  const tab = url.slice(1);
+  activeTab.value = tab;
+});
+
 const navList: Array<NavItem> = [
   { label: '首页', name: 'home' },
   { label: '存档', name: 'archive' },
-  { label: '文章', name: 'article' },
-  { label: '关于', name: 'about' }
+  // { label: '文章', name: 'article' },
+  { label: '关于', name: 'about' },
+  { label: '设置', name: 'setting' }
 ];
-
-const activeTab = ref<string>('home');
 
 const handleClickMenu = (name: string) => {
   router.push({ name });
