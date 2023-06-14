@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="archive-container">
     <sider-bar class="siderbar" :activeId="activeId" :categoryList="categoryList" @on-active="handleChangeActive" />
 
     <Catalogue class="catalogue" :articleList="articleList" />
@@ -74,8 +74,10 @@ const handleChangeActive = async (id: number) => {
 </script>
 
 <style scoped lang="less">
-.container {
-  height: 100%;
+.archive-container {
+  display: flex;
+  justify-content: space-between;
+  min-height: 100%;
   .siderbar {
     position: fixed;
     top: 80px;
@@ -84,7 +86,7 @@ const handleChangeActive = async (id: number) => {
   .catalogue {
     margin-left: 200px;
     width: calc(100% - 200px);
-    min-height: 80%;
+    min-height: 100%;
   }
 }
 </style>
