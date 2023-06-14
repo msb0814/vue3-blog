@@ -26,6 +26,10 @@ declare global {
     browse: number;
     category_id: number;
   }
+
+  interface ArticleItem extends ArticleListItem {
+    categoryName: string;
+  }
 }
 
 interface ArticleCommentMeta {

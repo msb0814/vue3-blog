@@ -40,8 +40,8 @@ const navList: Array<NavItem> = [
   { label: '首页', name: 'home' },
   { label: '存档', name: 'archive' },
   // { label: '文章', name: 'article' },
-  { label: '关于', name: 'about' },
-  { label: '设置', name: 'setting' }
+  { label: '关于', name: 'about' }
+  // { label: '设置', name: 'setting' }
 ];
 
 const handleClickMenu = (name: string) => {

@@ -16,6 +16,13 @@ export default defineConfig({
     }
   },
   plugins: [vue()],
+  build: {
+    terserOptions: {
+      compress: {
+        unused: false // 关闭未使用变量的警告提示
+      }
+    }
+  },
   css: {
     preprocessorOptions: {
       less: {

@@ -7,7 +7,7 @@ export default { name: 'Category' };
 </script>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import request from '@/utils/request';
 
 onMounted(() => {

@@ -45,7 +45,7 @@ const getCategoryList = async () => {
   categoryList.value = [allCate, ...res.data];
 };
 
-const articleList = ref<Array<ArticleListItem>>([]); // 文章列表
+const articleList = ref<Array<ArticleItem>>([]); // 文章列表
 
 // 获取文章列表
 const getArticleList = async () => {

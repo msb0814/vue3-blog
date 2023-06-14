@@ -23,10 +23,6 @@
 
 <script lang="ts">
 export default { name: 'catalogue' };
-
-interface ArticleItem extends ArticleListItem {
-  categoryName: string;
-}
 </script>
 
 <script setup lang="ts">
