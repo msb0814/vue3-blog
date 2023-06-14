@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { Base64 } from 'js-base64';
 
 export interface ResponseData {
   code: number;
@@ -14,9 +15,18 @@ service = axios.create({
   timeout: 50000
 });
 
+// token加密
+function _encode() {
+  const token = localStorage.getItem('TOKEN');
+  const base64 = Base64.encode(token + ':');
+  return 'Basic ' + base64;
+}
+
 // request 拦截器 axios 的一些配置
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    // @ts-ignore
+    config.headers['Authorization'] = _encode();
     return config;
   },
   (error: any) => {
