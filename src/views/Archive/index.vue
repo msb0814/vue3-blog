@@ -2,7 +2,7 @@
   <div class="container">
     <sider-bar class="siderbar" :activeId="activeId" :categoryList="categoryList" @on-active="handleChangeActive" />
 
-    <Catalogue :articleList="articleList" />
+    <Catalogue class="catalogue" :articleList="articleList" />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ interface articleParams {
 import { ref, onMounted } from 'vue';
 import request from '@/utils/request';
 import SiderBar from './components/SiderBar.vue';
-import Catalogue from './components/Catalogue.vue';
+import Catalogue from '@/components/Catalogue.vue';
 
 onMounted(() => {
   getCategoryList();
@@ -75,9 +75,16 @@ const handleChangeActive = async (id: number) => {
 
 <style scoped lang="less">
 .container {
+  height: 100%;
   .siderbar {
     position: fixed;
     top: 80px;
+  }
+
+  .catalogue {
+    margin-left: 200px;
+    width: calc(100% - 200px);
+    min-height: 80%;
   }
 }
 </style>
